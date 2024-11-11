@@ -14,7 +14,7 @@ import androidx.compose.foundation.border
 
 data class GameSettings(
     val mode: GameMode,
-    val boardSize: Int,
+    val boardSize: Int = 3,
     val player1Color: Color,
     val player2Color: Color,
     val player1Shape: PlayerShape,
@@ -50,6 +50,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
             )
 
             var selectedMode by remember { mutableStateOf(GameMode.SINGLE_MODE) }
+            var selectedBoardSize by remember { mutableStateOf(3) }
             var player1Color by remember { mutableStateOf(Color.Yellow) }
             var player2Color by remember { mutableStateOf(Color.Blue) }
             var player1Shape by remember { mutableStateOf(PlayerShape.CROSS) }
@@ -77,6 +78,25 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                     )
                 ) {
                     Text("Double Mode")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Text(text = "Choose Board Size", color = Color.White)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                listOf(3, 4, 5).forEach { size ->
+                    Button(
+                        onClick = { selectedBoardSize = size },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (selectedBoardSize == size) Color.Gray else Color.LightGray
+                        )
+                    ) {
+                        Text("${size}x$size")
+                    }
                 }
             }
 
@@ -218,7 +238,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 onClick = {
                     onStartGame(GameSettings(
                         mode = selectedMode,
-                        boardSize = 3,
+                        boardSize = selectedBoardSize,
                         player1Color = player1Color,
                         player2Color = player2Color,
                         player1Shape = player1Shape,
