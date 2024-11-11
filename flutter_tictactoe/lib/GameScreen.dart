@@ -60,6 +60,21 @@ class _GameScreenState extends State<GameScreen> {
     return null;
   }
 
+  void makeComputerMove() {
+    List<List<int>> emptyCells = [];
+    for (int i = 0; i < widget.gameSettings.boardSize; i++) {
+      for (int j = 0; j < widget.gameSettings.boardSize; j++) {
+        if (board[i][j] == Player.NONE) emptyCells.add([i, j]);
+      }
+    }
+    if (emptyCells.isNotEmpty) {
+      final move = emptyCells..shuffle();
+      setState(() {
+        board[move[0][0]][move[0][1]] = Player.O;
+      });
+    }
+  }
+
   void onCellClick(int i, int j) {
     if (board[i][j] == Player.NONE) {
       setState(() {
@@ -89,6 +104,35 @@ class _GameScreenState extends State<GameScreen> {
           );
         } else {
           currentPlayer = currentPlayer == Player.X ? Player.O : Player.X;
+          if (widget.gameSettings.mode == GameMode.SINGLE_MODE && currentPlayer == Player.O) {
+            makeComputerMove();
+            final winnerAfterComputerMove = checkWinner();
+            if (winnerAfterComputerMove != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultScreen(
+                    resultMessage: winnerAfterComputerMove == Player.NONE
+                        ? "It's a tie!"
+                        : "The winner is: ${winnerAfterComputerMove == Player.X ? player1Shape : player2Shape}",
+                    onPlayAgain: () {
+                      Navigator.pop(context); // Powrót do gry
+                      setState(() {
+                        board = List.generate(widget.gameSettings.boardSize, (_) => List.generate(widget.gameSettings.boardSize, (_) => Player.NONE));
+                        currentPlayer = Player.X;
+                      });
+                    },
+                    onBackToSettings: () {
+                      Navigator.pop(context); // Powrót do ekranu ustawień
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              );
+            } else {
+              currentPlayer = Player.X;
+            }
+          }
         }
       });
     }
@@ -97,43 +141,56 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tic Tac Toe')),
-      body: Column(
-        children: [
-          Expanded(
-            child: Column(
-              children: List.generate(
-                widget.gameSettings.boardSize,
-                    (i) => Row(
-                  children: List.generate(
-                    widget.gameSettings.boardSize,
-                        (j) => GestureDetector(
-                      onTap: () => onCellClick(i, j),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        margin: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.yellow),
-                          color: Colors.black,
-                        ),
-                        child: Center(
-                          child: Text(
-                            board[i][j] == Player.X ? player1Shape : board[i][j] == Player.O ? player2Shape : '',
-                            style: TextStyle(
-                              fontSize: 24,
-                              color: board[i][j] == Player.X ? player1Color : board[i][j] == Player.O ? player2Color : Colors.transparent,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Tic Tac Toe', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < widget.gameSettings.boardSize; i++)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int j = 0; j < widget.gameSettings.boardSize; j++)
+                      GestureDetector(
+                        onTap: () => onCellClick(i, j),
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          margin: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            border: Border.all(color: Colors.yellow),
+                          ),
+                          child: Center(
+                            child: Text(
+                              board[i][j] == Player.X
+                                  ? player1Shape
+                                  : board[i][j] == Player.O
+                                  ? player2Shape
+                                  : '',
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: board[i][j] == Player.X
+                                    ? player1Color
+                                    : board[i][j] == Player.O
+                                    ? player2Color
+                                    : Colors.transparent,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                  ],
                 ),
-              ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class _StartScreenState extends State<StartScreen> {
   PlayerShape player2Shape = PlayerShape.CIRCLE;
 
   void startGame() {
-    // Losujemy ustawienia dla gracza komputera w trybie Single Mode
+    // Losowe ustawienia dla komputera w trybie Single Mode
     if (selectedMode == GameMode.SINGLE_MODE) {
       player2Color = Colors.primaries.where((color) => color != player1Color).first;
       player2Shape = PlayerShape.values.where((shape) => shape != player1Shape).first;
@@ -44,37 +44,114 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Select game mode and settings",
-                style: TextStyle(color: Colors.white, fontSize: 24)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () => setState(() => selectedMode = GameMode.SINGLE_MODE),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: selectedMode == GameMode.SINGLE_MODE ? Colors.grey : Colors.blue,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Select game mode and settings",
+                style: TextStyle(color: Colors.white, fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+
+              // Tryb gry
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => setState(() => selectedMode = GameMode.SINGLE_MODE),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: selectedMode == GameMode.SINGLE_MODE ? Colors.grey : Colors.lightBlue,
+                    ),
+                    child: Text("Single Mode"),
                   ),
-                  child: Text("Single Mode"),
+                  ElevatedButton(
+                    onPressed: () => setState(() => selectedMode = GameMode.DOUBLE_MODE),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: selectedMode == GameMode.DOUBLE_MODE ? Colors.grey : Colors.lightBlue,
+                    ),
+                    child: Text("Double Mode"),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 32),
+
+              // Rozmiar planszy
+              Text("Choose Board Size", style: TextStyle(color: Colors.white)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [3, 4, 5].map((size) {
+                  return ElevatedButton(
+                    onPressed: () => setState(() => selectedBoardSize = size),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: selectedBoardSize == size ? Colors.grey : Colors.lightBlue,
+                    ),
+                    child: Text("${size}x$size"),
+                  );
+                }).toList(),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Kolor i kształt dla trybu Single Mode
+              if (selectedMode == GameMode.SINGLE_MODE) ...[
+                Text("Choose Your Color and Shape", style: TextStyle(color: Colors.white)),
+
+                // Wybór koloru
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [Colors.yellow, Colors.red, Colors.blue, Colors.green, Colors.purple].map((color) {
+                    return GestureDetector(
+                      onTap: () => setState(() => player1Color = color),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: color,
+                          border: Border.all(
+                            color: player1Color == color ? Colors.white : Colors.black,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
-                ElevatedButton(
-                  onPressed: () => setState(() => selectedMode = GameMode.DOUBLE_MODE),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: selectedMode == GameMode.DOUBLE_MODE ? Colors.grey : Colors.blue,
-                  ),
-                  child: Text("Double Mode"),
+
+                const SizedBox(height: 16),
+
+                // Wybór kształtu
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: PlayerShape.values.map((shape) {
+                    return ElevatedButton(
+                      onPressed: () => setState(() => player1Shape = shape),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: player1Shape == shape ? Colors.grey : Colors.lightBlue,
+                      ),
+                      child: Text(shape.symbol),
+                    );
+                  }).toList(),
                 ),
               ],
-            ),
-            ElevatedButton(
-              onPressed: startGame,
-              child: Text("PLAY"),
-            ),
-          ],
+
+              const SizedBox(height: 32),
+
+              // Przycisk PLAY
+              ElevatedButton(
+                onPressed: startGame,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 50),
+                ),
+                child: Text("PLAY"),
+              ),
+            ],
+          ),
         ),
       ),
     );
