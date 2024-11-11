@@ -38,7 +38,7 @@ fun ResultScreen(
                 .padding(16.dp)
                 .size(150.dp, 50.dp)
         ) {
-            Text("Zagraj ponownie")
+            Text("Play again")
         }
 
         Button(
@@ -47,7 +47,7 @@ fun ResultScreen(
                 .padding(16.dp)
                 .size(150.dp, 50.dp)
         ) {
-            Text("Powrót do ustawień")
+            Text("Back to settings")
         }
     }
 }

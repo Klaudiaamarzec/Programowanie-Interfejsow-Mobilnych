@@ -23,6 +23,19 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
         )
     }
 
+    val player1Color = gameSettings.player1Color
+    val player2Color = gameSettings.player2Color
+    val player1Shape = gameSettings.player1Shape.symbol
+    val player2Shape = gameSettings.player2Shape.symbol
+
+    fun getPlayerSymbolAndColor(player: Player): Pair<String, Color> {
+        return when (player) {
+            Player.X -> player1Shape to player1Color
+            Player.O -> player2Shape to player2Color
+            Player.NONE -> "" to Color.Transparent
+        }
+    }
+
     fun checkWinner(): Player? {
         for (i in 0 until gameSettings.boardSize) {
             if ((board[i].all { it == Player.X }) || (board.map { it[i] }.all { it == Player.X })) return Player.X
@@ -53,14 +66,28 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
             }
             val winner = checkWinner()
             if (winner != null) {
-                onGameEnd(if (winner == Player.NONE) "Remis" else "Wygrywa: ${winner.symbol}")
+                onGameEnd(
+                    if (winner == Player.NONE) {
+                        "It's a tie!"
+                    } else {
+                        val winnerShape = if (winner == Player.X) player1Shape else player2Shape
+                        "The winner is: $winnerShape"
+                    }
+                )
             } else {
                 currentPlayer = if (currentPlayer == Player.X) Player.O else Player.X
                 if (gameSettings.mode == GameMode.SINGLE_MODE && currentPlayer == Player.O) {
                     makeComputerMove()
                     val winnerAfterComputerMove = checkWinner()
                     if (winnerAfterComputerMove != null) {
-                        onGameEnd(if (winnerAfterComputerMove == Player.NONE) "Remis" else "Wygrywa: ${winnerAfterComputerMove.symbol}")
+                        onGameEnd(
+                            if (winnerAfterComputerMove == Player.NONE) {
+                                "It's a tie!"
+                            } else {
+                                val winnerShape = if (winnerAfterComputerMove == Player.X) player1Shape else player2Shape
+                                "The winner is: $winnerShape"
+                            }
+                        )
                     }
                 }
             }
@@ -84,6 +111,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
                     Row {
                         for (j in 0 until gameSettings.boardSize) {
                             val cellState = board[i][j]
+                            val (symbol, color) = getPlayerSymbolAndColor(cellState)
                             Box(
                                 modifier = Modifier
                                     .size(80.dp)
@@ -92,9 +120,9 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = cellState.symbol,
+                                    text = symbol,
                                     style = MaterialTheme.typography.displayMedium,
-                                    color = Color.Yellow
+                                    color = color
                                 )
                             }
                         }
@@ -108,7 +136,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
             modifier = Modifier
                 .padding(32.dp)
         ) {
-            Text("Powrót do ustawień")
+            Text("Back to settings")
         }
     }
 }
