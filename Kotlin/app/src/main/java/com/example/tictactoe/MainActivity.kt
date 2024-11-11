@@ -15,7 +15,18 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startGame(gameSettings: GameSettings) {
-        currentScreen = { GameScreen(gameSettings = gameSettings, onBack = { resetGame() }) }
+        currentScreen = { GameScreen(gameSettings = gameSettings, onBack = { resetGame() }, onGameEnd = { resultMessage -> showResult(resultMessage, gameSettings) }) }
+        setContent { currentScreen() }
+    }
+
+    private fun showResult(resultMessage: String, gameSettings: GameSettings) {
+        currentScreen = {
+            ResultScreen(
+                resultMessage = resultMessage,
+                onPlayAgain = { startGame(gameSettings) },
+                onBackToSettings = { resetGame() }
+            )
+        }
         setContent { currentScreen() }
     }
 
