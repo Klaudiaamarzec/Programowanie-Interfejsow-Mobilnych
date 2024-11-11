@@ -140,6 +140,91 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ],
 
+              if (selectedMode == GameMode.DOUBLE_MODE) ...[
+                // Ustawienia dla gracza 1
+                Text("Player 1: Choose Your Color and Shape", style: TextStyle(color: Colors.white)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [Colors.yellow, Colors.red, Colors.blue, Colors.green, Colors.purple].map((color) {
+                    return GestureDetector(
+                      onTap: () => setState(() {
+                        if (color != player2Color) player1Color = color;
+                      }),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: color,
+                          border: Border.all(
+                            color: player1Color == color ? Colors.white : Colors.black,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+
+                const SizedBox(height: 16),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: PlayerShape.values.map((shape) {
+                    return ElevatedButton(
+                      onPressed: () => setState(() {
+                        if (shape != player2Shape) player1Shape = shape;
+                      }),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: player1Shape == shape ? Colors.grey : Colors.lightBlue,
+                      ),
+                      child: Text(shape.symbol),
+                    );
+                  }).toList(),
+                ),
+
+                const SizedBox(height: 32),
+
+                Text("Player 2: Choose Your Color and Shape", style: TextStyle(color: Colors.white)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [Colors.yellow, Colors.red, Colors.blue, Colors.green, Colors.purple].map((color) {
+                    return GestureDetector(
+                      onTap: () => setState(() {
+                        if (color != player1Color) player2Color = color;
+                      }),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: color,
+                          border: Border.all(
+                            color: player2Color == color ? Colors.white : Colors.black,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+
+                const SizedBox(height: 16),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: PlayerShape.values.map((shape) {
+                    return ElevatedButton(
+                      onPressed: () => setState(() {
+                        if (shape != player1Shape) player2Shape = shape;
+                      }),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: player2Shape == shape ? Colors.grey : Colors.lightBlue,
+                      ),
+                      child: Text(shape.symbol),
+                    );
+                  }).toList(),
+                ),
+              ],
+
               const SizedBox(height: 32),
 
               // Przycisk PLAY
