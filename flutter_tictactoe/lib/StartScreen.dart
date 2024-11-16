@@ -93,6 +93,7 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed: () => setState(() => selectedBoardSize = size),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: selectedBoardSize == size ? AppColors.gray : AppColors.lightGray,
+                      foregroundColor: AppColors.backgroundColor,
                     ),
                     child: Text("${size}x$size"),
                   );
@@ -146,7 +147,7 @@ class _StartScreenState extends State<StartScreen> {
 
               if (selectedMode == GameMode.DOUBLE_MODE) ...[
                 // Ustawienia dla gracza 1
-                Text("Player 1: Choose Color and Shape", style: AppTypography.bodyMedium.copyWith(color: AppColors.textColor)),
+                Text("Player 1 - Choose Color and Shape", style: AppTypography.bodyMedium.copyWith(color: AppColors.textColor)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [AppColors.yellow200, AppColors.red200, AppColors.blue200, AppColors.green200, AppColors.purple200].map((color) {
@@ -189,7 +190,7 @@ class _StartScreenState extends State<StartScreen> {
 
                 const SizedBox(height: 32),
 
-                Text("Player 2: Choose Color and Shape", style: AppTypography.bodyMedium.copyWith(color: AppColors.textColor)),
+                Text("Player 2 - Choose Color and Shape", style: AppTypography.bodyMedium.copyWith(color: AppColors.textColor)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [AppColors.yellow200, AppColors.red200, AppColors.blue200, AppColors.green200, AppColors.purple200].map((color) {
