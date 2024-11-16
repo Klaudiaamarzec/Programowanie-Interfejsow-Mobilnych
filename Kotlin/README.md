@@ -54,4 +54,3 @@ Aplikacja stworzona w Kotlinie z wykorzystaniem Jetpack Compose.
 ---
 
 **Autorki:** Klaudia Marzec, Kinga Foksińska
-Licencja: MIT
