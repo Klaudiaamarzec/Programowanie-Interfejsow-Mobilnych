@@ -54,7 +54,7 @@ class _StartScreenState extends State<StartScreen> {
             children: [
               Text(
                 "Select game mode and settings",
-                style: AppTypography.bodyMedium.copyWith(color: AppColors.textColor),
+                style: AppTypography.headlineLarge.copyWith(color: AppColors.textColor),
                 textAlign: TextAlign.left,
               ),
               const SizedBox(height: 32),
@@ -67,6 +67,7 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed: () => setState(() => selectedMode = GameMode.SINGLE_MODE),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: selectedMode == GameMode.SINGLE_MODE ? AppColors.gray : AppColors.lightGray,
+                      foregroundColor: AppColors.backgroundColor,
                     ),
                     child: Text("Single Mode"),
                   ),
@@ -74,6 +75,7 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed: () => setState(() => selectedMode = GameMode.DOUBLE_MODE),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: selectedMode == GameMode.DOUBLE_MODE ? AppColors.gray : AppColors.lightGray,
+                      foregroundColor: AppColors.backgroundColor,
                     ),
                     child: Text("Double Mode"),
                   ),
@@ -134,6 +136,7 @@ class _StartScreenState extends State<StartScreen> {
                       onPressed: () => setState(() => player1Shape = shape),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: player1Shape == shape ? AppColors.gray : AppColors.lightGray,
+                        foregroundColor: AppColors.backgroundColor,
                       ),
                       child: Text(shape.symbol),
                     );
@@ -177,6 +180,7 @@ class _StartScreenState extends State<StartScreen> {
                       }),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: player1Shape == shape ? AppColors.gray : AppColors.lightGray,
+                        foregroundColor: AppColors.backgroundColor,
                       ),
                       child: Text(shape.symbol),
                     );
@@ -219,6 +223,7 @@ class _StartScreenState extends State<StartScreen> {
                       }),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: player2Shape == shape ? AppColors.gray : AppColors.lightGray,
+                        foregroundColor: AppColors.backgroundColor,
                       ),
                       child: Text(shape.symbol),
                     );

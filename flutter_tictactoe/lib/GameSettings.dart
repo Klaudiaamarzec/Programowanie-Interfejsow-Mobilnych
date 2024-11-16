@@ -23,8 +23,8 @@ class GameSettings {
 enum PlayerShape {
   CROSS('X'),
   CIRCLE('O'),
-  SQUARE('□'),
-  TRIANGLE('△'),
+  SQUARE('■'),
+  TRIANGLE('▲'),
   STAR('★');
 
   final String symbol;
