@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import kotlin.random.Random
+import com.example.tictactoe.ui.theme.*
 
 @Composable
 fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: GameSettings) {
@@ -97,7 +97,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
+            .background(BackgroundColor),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -115,7 +115,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
                             Box(
                                 modifier = Modifier
                                     .size(80.dp)
-                                    .border(2.dp, Color.Yellow)
+                                    .border(2.dp, BorderColor)
                                     .clickable { onCellClick(i, j) },
                                 contentAlignment = Alignment.Center
                             ) {

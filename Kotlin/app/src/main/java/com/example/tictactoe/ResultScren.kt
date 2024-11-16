@@ -8,8 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.tictactoe.ui.theme.*
 
 @Composable
 fun ResultScreen(
@@ -20,7 +20,7 @@ fun ResultScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
+            .background(BackgroundColor)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -28,7 +28,7 @@ fun ResultScreen(
         Text(
             text = resultMessage,
             style = MaterialTheme.typography.headlineLarge,
-            color = Color.White,
+            color = TextColor,
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
