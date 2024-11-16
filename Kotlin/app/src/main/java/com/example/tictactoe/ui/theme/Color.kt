@@ -10,8 +10,11 @@ val Purple200 = Color(0xFFBA68C8)
 
 val BackgroundColor = Color(0xFF000000)
 val TextColor = Color(0xFFFFFFFF)
-val BorderColor = Color(0xFFFFEB46)
 
-val Gray = Color.Gray
-val LightGray = Color.LightGray
-val Black = Color.Black
+val BorderColor = Color(0xFFFFEB46)
+val BorderColor2 = Color(0xFFFFFFFF)
+val BorderColor3 = Color(0xFF000000)
+
+val Gray =  Color(0xFF454545)
+val LightGray =  Color(0xFF999999)
+

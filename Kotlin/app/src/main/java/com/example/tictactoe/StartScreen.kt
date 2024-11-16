@@ -105,7 +105,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             if (selectedMode == GameMode.SINGLE_MODE) {
                 // Opcje dla trybu Single Mode
-                Text(text = "Choose Your Color and Shape", color = TextColor)
+                Text(text = "Choose Color and Shape", color = TextColor)
 
                 // Wybór koloru dla gracza
                 Row(
@@ -118,7 +118,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .size(50.dp)
                                 .background(color)
                                 .clickable { player1Color = color }
-                                .border(2.dp, if (player1Color == color) TextColor else Black)
+                                .border(2.dp, if (player1Color == color) BorderColor2 else BorderColor3)
                         )
                     }
                 }
@@ -167,7 +167,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player2Color) player1Color = color
                                 }
-                                .border(2.dp, if (player1Color == color) TextColor else Black)
+                                .border(2.dp, if (player1Color == color) BorderColor2 else BorderColor3)
                         )
                     }
                 }
@@ -207,7 +207,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player1Color) player2Color = color
                                 }
-                                .border(2.dp, if (player2Color == color) TextColor else Black)
+                                .border(2.dp, if (player2Color == color) BorderColor2 else BorderColor3)
                         )
                     }
                 }

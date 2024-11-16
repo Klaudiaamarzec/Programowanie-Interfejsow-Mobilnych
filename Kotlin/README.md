@@ -27,7 +27,7 @@ Aplikacja stworzona w Kotlinie z wykorzystaniem Jetpack Compose.
 
 5. **Folder ui.theme**
     - **Color.kt** – Definicje kolorów.
-    - **Theme.kt`** – Ustawienia motywu aplikacji.
+    - **Theme.kt** – Ustawienia motywu aplikacji.
     - **Type.kt** – Definicje stylów tekstu.
 
 ---
@@ -45,11 +45,16 @@ Aplikacja stworzona w Kotlinie z wykorzystaniem Jetpack Compose.
 ## Przykładowe zrzuty ekranu 
 - Ekran konfiguracji gry
 ![img.png](img.png)
-- Rozgrywka w toku  
 ![img_1.png](img_1.png)
-- Ekran wyników
+
+- Rozgrywka w toku  
+![img_4.png](img_4.png)
 ![img_2.png](img_2.png)
- 
+![img_3.png](img_3.png)
+
+- Ekran wyników
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
 
 ---
 
