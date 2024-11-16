@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'GameSettings.dart';
 import 'ResultScreen.dart';
+import 'ui/theme/colors.dart';
 
 enum Player { X, O, NONE }
 
@@ -141,11 +142,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text('Tic Tac Toe', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
-      ),
+      backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Center(
@@ -162,10 +159,9 @@ class _GameScreenState extends State<GameScreen> {
                         child: Container(
                           width: 80,
                           height: 80,
-                          margin: EdgeInsets.all(4),
                           decoration: BoxDecoration(
-                            color: Colors.black,
-                            border: Border.all(color: Colors.yellow),
+                            color: AppColors.backgroundColor,
+                            border: Border.all(color: AppColors.borderColor),
                           ),
                           child: Center(
                             child: Text(
