@@ -1,3 +1,4 @@
 ## TO DO
-- UI
-- plansza 5x5 (wychodzi poza ekran)
+- dodać przycisk back to settings w game screenie
+- poprawić main.dart aby uzywal theme
+- zrobic screenshoty i porownac rozmieszczenie, wielkosci i kolory
