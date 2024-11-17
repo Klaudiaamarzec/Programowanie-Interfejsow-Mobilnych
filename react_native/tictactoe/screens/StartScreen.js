@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import { Surface } from 'react-native-paper';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
 
 const StartScreen = ({ navigation }) => {
   const [selectedMode, setSelectedMode] = useState('SINGLE_MODE');
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#ffffff',
   },
   title: {
     fontSize: 24,

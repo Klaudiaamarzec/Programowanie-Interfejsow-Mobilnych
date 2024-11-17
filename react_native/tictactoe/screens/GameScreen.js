@@ -62,18 +62,16 @@ const GameScreen = ({ navigation, route }) => {
         }
         if (emptyCells.length) {
             const [i, j] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            const newBoard = [...board];
-            newBoard[i][j] = 'O';
-            setBoard(newBoard);
+            board[i][j] = 'O';
+            setBoard([...board]);
             setCurrentPlayer('X');
         }
     };
 
     const onCellClick = (i, j) => {
         if (board[i][j] === 'NONE' && winner === null) {
-            const newBoard = [...board];
-            newBoard[i][j] = currentPlayer;
-            setBoard(newBoard);
+            board[i][j] = currentPlayer;
+            setBoard([...board]);
             const currentWinner = checkWinner();
             setWinner(currentWinner);
             if (currentWinner === null) {
@@ -106,7 +104,7 @@ const GameScreen = ({ navigation, route }) => {
                             return (
                                 <TouchableOpacity
                                     key={j}
-                                    style={[styles.cell, { borderColor: color }]}
+                                    style={[styles.cell, { borderColor: 'yellow' }]}
                                     onPress={() => onCellClick(i, j)}
                                 >
                                     <Text style={[styles.cellText, { color: color }]}>
@@ -129,14 +127,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#ffffff',
         paddingTop: 20,
     },
     board: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        color: '#fced06'
+        alignItems: 'center'
     },
     row: {
         flexDirection: 'row',
