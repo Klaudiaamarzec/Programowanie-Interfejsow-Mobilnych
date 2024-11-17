@@ -2,7 +2,37 @@ import 'package:flutter/material.dart';
 import 'ui/theme/colors.dart';
 import 'ui/theme/typography.dart';
 import 'GameScreen.dart';
-import 'GameSettings.dart';
+
+class GameSettings {
+  final GameMode mode;
+  final int boardSize;
+  final Color player1Color;
+  final Color player2Color;
+  final PlayerShape player1Shape;
+  final PlayerShape player2Shape;
+
+  GameSettings(
+      {required this.mode,
+        required this.boardSize,
+        required this.player1Color,
+        required this.player2Color,
+        required this.player1Shape,
+        required this.player2Shape});
+}
+
+enum GameMode { SINGLE_MODE, DOUBLE_MODE }
+
+enum PlayerShape {
+  CROSS('X'),
+  CIRCLE('O'),
+  SQUARE('■'),
+  TRIANGLE('▲'),
+  STAR('★');
+
+  final String symbol;
+
+  const PlayerShape(this.symbol);
+}
 
 class StartScreen extends StatefulWidget {
   @override
@@ -232,7 +262,7 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ],
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 64),
 
               // Przycisk PLAY
               ElevatedButton(

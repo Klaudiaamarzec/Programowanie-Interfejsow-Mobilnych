@@ -41,7 +41,7 @@ class ResultScreen extends StatelessWidget {
                   style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary)
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 32),
               ElevatedButton(
                 onPressed: onBackToSettings,
                 style: ElevatedButton.styleFrom(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'GameSettings.dart';
+import 'StartScreen.dart';
 import 'ResultScreen.dart';
 import 'ui/theme/colors.dart';
+import 'ui/theme/typography.dart';
 
 enum Player { X, O, NONE }
 
@@ -195,23 +196,18 @@ class _GameScreenState extends State<GameScreen> {
 
             // Dodanie przycisku na dole
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.yellow200,
-                  minimumSize: Size(double.infinity, 50),
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  minimumSize: Size(150, 50),
                 ),
                 child: Text(
                   "Back to settings",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                    style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
             ),
@@ -220,5 +216,4 @@ class _GameScreenState extends State<GameScreen> {
       ),
     );
   }
-
 }

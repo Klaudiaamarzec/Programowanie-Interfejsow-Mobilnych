@@ -18,7 +18,7 @@ class AppTheme {
       primary: AppColors.yellow200,
       onPrimary: AppColors.textColorLightMode,
       background: AppColors.backgroundColorDarkMode,
-      onBackground: AppColors.textColorLightMode,
+      onBackground: AppColors.textColorDarkMode,
     ),
     textTheme: AppTypography.textTheme,
   );
