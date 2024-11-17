@@ -63,7 +63,7 @@ const GameScreen = ({ navigation, route }) => {
         if (emptyCells.length) {
             const [i, j] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
             board[i][j] = 'O';
-            setBoard([...board]);
+            //setBoard([...board]);
             setCurrentPlayer('X');
         }
     };
@@ -71,7 +71,7 @@ const GameScreen = ({ navigation, route }) => {
     const onCellClick = (i, j) => {
         if (board[i][j] === 'NONE' && winner === null) {
             board[i][j] = currentPlayer;
-            setBoard([...board]);
+            //setBoard([...board]);
             const currentWinner = checkWinner();
             setWinner(currentWinner);
             if (currentWinner === null) {
@@ -104,7 +104,7 @@ const GameScreen = ({ navigation, route }) => {
                             return (
                                 <TouchableOpacity
                                     key={j}
-                                    style={[styles.cell, { borderColor: 'yellow' }]}
+                                    style={[styles.cell]}
                                     onPress={() => onCellClick(i, j)}
                                 >
                                     <Text style={[styles.cellText, { color: color }]}>
@@ -117,7 +117,14 @@ const GameScreen = ({ navigation, route }) => {
                 ))}
             </View>
 
-            <Button title="Back to settings" onPress={() => navigation.goBack()} />
+            <TouchableOpacity
+                style={[styles.button]}
+                onPress={() => navigation.goBack()}
+            >
+                <Text style={styles.buttonText}>Back to settings</Text>
+            </TouchableOpacity>
+
+            {/*<Button style={[styles.button]} title="Back to settings" onPress={() => navigation.goBack()} />*/}
         </View>
     );
 };
@@ -128,7 +135,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#ffffff',
-        paddingTop: 20,
+        marginTop: -135,
     },
     board: {
         flex: 1,
@@ -144,10 +151,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
+        borderColor: '#ffe954',
     },
     cellText: {
-        fontSize: 36,
+        fontSize: 25,
         fontWeight: 'bold',
+    },
+    button: {
+        backgroundColor: '#ffe83c',
+        width: '150',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+        marginBottom: 35,
+    },
+    buttonText: {
+        color: '#000',
+        fontSize: 14,
+        fontWeight: 'normal',
     },
 });
 
