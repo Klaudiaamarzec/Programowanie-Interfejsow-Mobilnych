@@ -6,9 +6,9 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.light(
       primary: AppColors.yellow200,
-      onPrimary: AppColors.backgroundColor,
-      background: AppColors.backgroundColor,
-      onBackground: AppColors.textColor,
+      onPrimary: AppColors.textColorLightMode,
+      background: AppColors.backgroundColorLightMode,
+      onBackground: AppColors.textColorLightMode,
     ),
     textTheme: AppTypography.textTheme,
   );
@@ -16,9 +16,9 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme.dark(
       primary: AppColors.yellow200,
-      onPrimary: AppColors.backgroundColor,
-      background: AppColors.backgroundColor,
-      onBackground: AppColors.textColor,
+      onPrimary: AppColors.textColorLightMode,
+      background: AppColors.backgroundColorDarkMode,
+      onBackground: AppColors.textColorLightMode,
     ),
     textTheme: AppTypography.textTheme,
   );
