@@ -13,9 +13,10 @@ val BackgroundColorLightMode = Color(0xFFFFFFFF)
 
 val TextColorDarkMode = Color(0xFFFFFFFF)
 val TextColorLightMode = Color(0xFF000000)
+val TextColor = Color(0xFFFFFFFF)
 
 val BorderColor = Color(0xFFFFEB46)
 
-val Gray =  Color(0xFF454545)
-val LightGray =  Color(0xFF999999)
+val Gray =  Color(0xFF777777)
+val LightGray =  Color(0xFFCCCCCC)
 

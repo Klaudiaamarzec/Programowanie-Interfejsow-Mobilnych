@@ -6,7 +6,7 @@ import androidx.compose.material3.*
 
 private val LightColors = lightColorScheme(
     primary = Yellow200,
-    onPrimary = TextColorLightMode,
+    onPrimary = TextColor,
     background = BackgroundColorLightMode,
     onBackground = TextColorLightMode
 )

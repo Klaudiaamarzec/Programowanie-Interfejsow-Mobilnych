@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -130,7 +131,9 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
         Button(
             onClick = onBack,
             modifier = Modifier
-                .padding(32.dp)
+                .padding(32.dp),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color.Black)
         ) {
             Text("Back to settings")
         }

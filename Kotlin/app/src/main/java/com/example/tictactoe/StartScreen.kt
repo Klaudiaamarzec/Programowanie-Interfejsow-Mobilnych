@@ -249,7 +249,9 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 },
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .size(100.dp, 50.dp)
+                    .size(100.dp, 50.dp),
+                colors = ButtonDefaults.buttonColors(
+                    contentColor = Color.Black)
             ) {
                 Text("PLAY")
             }
