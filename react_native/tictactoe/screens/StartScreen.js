@@ -72,8 +72,7 @@ const StartScreen = ({ navigation }) => {
         {/* Player 1 Settings */}
         {selectedMode === 'SINGLE_MODE' ? (
             <>
-              <Text style={styles.subtitle}>Choose Color and Shape</Text>
-              <Text style={styles.subtitle}>Player 1</Text>
+              <Text style={styles.subtitleSingle}>Choose Color and Shape</Text>
               <View style={styles.row}>
                 {['#FFEB3B', '#F44336', '#2196F3', '#4CAF50', '#9C27B0'].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer1Color(color)}>
@@ -131,8 +130,8 @@ const StartScreen = ({ navigation }) => {
         )}
 
         {/* Play Button */}
-        <Button
-            title="PLAY"
+        <TouchableOpacity
+            style={styles.playButton}
             onPress={() => {
               navigation.navigate('Game', {
                 gameSettings: {
@@ -145,7 +144,9 @@ const StartScreen = ({ navigation }) => {
                 }
               });
             }}
-        />
+        >
+          <Text style={styles.playButtonText}>PLAY</Text>
+        </TouchableOpacity>
       </View>
   );
 };
@@ -153,52 +154,66 @@ const StartScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 16,
+    paddingTop: 35,
     backgroundColor: '#ffffff',
   },
   title: {
-    fontSize: 24,
+    fontSize: 33,
+    alignSelf: 'flex-start',
+    paddingLeft: 20,
     fontWeight: 'bold',
     marginBottom: 32,
   },
   subtitle: {
-    fontSize: 18,
-    marginBottom: 8,
+    fontSize: 15,
+    marginBottom: 9,
+    marginTop: 25,
+  },
+  subtitleSingle: {
+    fontSize: 15,
+    marginBottom: 0,
+    marginTop: 25,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 16,
+    marginBottom: 11,
   },
   button: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    paddingHorizontal: 25,
+    borderRadius: 30,
+    width: 133,
+    height: 39,
     backgroundColor: '#ccc',
+    marginHorizontal: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   selectedButton: {
     backgroundColor: '#777',
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#fff',
   },
   sizeButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 26,
+    marginLeft: 10,
+    height: 37,
+    borderRadius: 30,
     backgroundColor: '#ccc',
   },
   sizeButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#fff',
   },
   colorOption: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 45,
+    height: 45,
+    borderRadius: 0,
     margin: 8,
   },
   selectedColorOption: {
@@ -206,10 +221,28 @@ const styles = StyleSheet.create({
     borderColor: '#000',
   },
   shapeButton: {
-    padding: 16,
+    paddingTop: 7,
+    paddingBottom: 10,
+    paddingHorizontal: 22,
+    width: 55,
     backgroundColor: '#ccc',
-    borderRadius: 8,
-    margin: 8,
+    borderRadius: 30,
+    marginTop: 3,
+    marginRight: 5,
+  },
+  playButton: {
+    backgroundColor: '#ffe83c',
+    width: '100',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    marginTop: 62,
+  },
+  playButtonText: {
+    color: '#000',
+    fontSize: 14,
+    fontWeight: 'normal',
   },
 });
 
