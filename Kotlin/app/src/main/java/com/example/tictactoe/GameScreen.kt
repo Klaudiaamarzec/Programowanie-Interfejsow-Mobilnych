@@ -22,6 +22,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
             List(gameSettings.boardSize) { MutableList(gameSettings.boardSize) { Player.NONE } }
         )
     }
+    var winner by remember { mutableStateOf<Player?>(null) }
 
     val player1Color = gameSettings.player1Color
     val player2Color = gameSettings.player2Color
@@ -60,37 +61,33 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
     }
 
     fun onCellClick(i: Int, j: Int) {
-        if (board[i][j] == Player.NONE) {
+        if (board[i][j] == Player.NONE && winner == null) {
             board = board.toMutableList().apply {
                 this[i] = this[i].toMutableList().apply { this[j] = currentPlayer }
             }
-            val winner = checkWinner()
-            if (winner != null) {
-                onGameEnd(
-                    if (winner == Player.NONE) {
-                        "It's a tie!"
-                    } else {
-                        val winnerShape = if (winner == Player.X) player1Shape else player2Shape
-                        "The winner is: $winnerShape"
-                    }
-                )
-            } else {
+            winner = checkWinner()
+            if (winner == null) {
                 currentPlayer = if (currentPlayer == Player.X) Player.O else Player.X
                 if (gameSettings.mode == GameMode.SINGLE_MODE && currentPlayer == Player.O) {
                     makeComputerMove()
-                    val winnerAfterComputerMove = checkWinner()
-                    if (winnerAfterComputerMove != null) {
-                        onGameEnd(
-                            if (winnerAfterComputerMove == Player.NONE) {
-                                "It's a tie!"
-                            } else {
-                                val winnerShape = if (winnerAfterComputerMove == Player.X) player1Shape else player2Shape
-                                "The winner is: $winnerShape"
-                            }
-                        )
-                    }
+                    winner = checkWinner()
                 }
             }
+        }
+    }
+
+    // Wywołanie efektu po zmianie zwycięzcy
+    LaunchedEffect(winner) {
+        if (winner != null) {
+            kotlinx.coroutines.delay(100)
+            onGameEnd(
+                if (winner == Player.NONE) {
+                    "It's a tie!"
+                } else {
+                    val winnerShape = if (winner == Player.X) player1Shape else player2Shape
+                    "The winner is: $winnerShape"
+                }
+            )
         }
     }
 
@@ -101,7 +98,6 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Box(
             modifier = Modifier.weight(1f),
             contentAlignment = Alignment.Center
@@ -140,6 +136,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
         }
     }
 }
+
 
 
 enum class Player(val symbol: String) {
