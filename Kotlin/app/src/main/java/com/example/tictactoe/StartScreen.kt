@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.border
-
+import com.example.tictactoe.ui.theme.*
 
 data class GameSettings(
     val mode: GameMode,
@@ -33,7 +33,7 @@ enum class PlayerShape(val symbol: String) {
 @Composable
 fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -45,14 +45,14 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
             Text(
                 text = "Select game mode and settings",
                 style = MaterialTheme.typography.headlineLarge,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 32.dp)
             )
 
             var selectedMode by remember { mutableStateOf(GameMode.SINGLE_MODE) }
             var selectedBoardSize by remember { mutableStateOf(3) }
-            var player1Color by remember { mutableStateOf(Color.Yellow) }
-            var player2Color by remember { mutableStateOf(Color.Blue) }
+            var player1Color by remember { mutableStateOf(Yellow200) }
+            var player2Color by remember { mutableStateOf(Blue200) }
             var player1Shape by remember { mutableStateOf(PlayerShape.CROSS) }
             var player2Shape by remember { mutableStateOf(PlayerShape.CIRCLE) }
 
@@ -65,7 +65,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 Button(
                     onClick = { selectedMode = GameMode.SINGLE_MODE },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedMode == GameMode.SINGLE_MODE) Color.Gray else Color.LightGray
+                        containerColor = if (selectedMode == GameMode.SINGLE_MODE) Gray else LightGray
                     )
                 ) {
                     Text("Single Mode")
@@ -74,7 +74,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 Button(
                     onClick = { selectedMode = GameMode.DOUBLE_MODE },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedMode == GameMode.DOUBLE_MODE) Color.Gray else Color.LightGray
+                        containerColor = if (selectedMode == GameMode.DOUBLE_MODE) Gray else LightGray
                     )
                 ) {
                     Text("Double Mode")
@@ -83,7 +83,8 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Text(text = "Choose Board Size", color = Color.White)
+            // Wybór rozmiaru planszy
+            Text(text = "Choose Board Size", color = MaterialTheme.colorScheme.onBackground)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
@@ -92,7 +93,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                     Button(
                         onClick = { selectedBoardSize = size },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = if (selectedBoardSize == size) Color.Gray else Color.LightGray
+                            containerColor = if (selectedBoardSize == size) Gray else LightGray
                         )
                     ) {
                         Text("${size}x$size")
@@ -104,20 +105,20 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             if (selectedMode == GameMode.SINGLE_MODE) {
                 // Opcje dla trybu Single Mode
-                Text(text = "Choose Your Color and Shape", color = Color.White)
+                Text(text = "Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
                 // Wybór koloru dla gracza
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    listOf(Color.Yellow, Color.Red, Color.Blue, Color.Green, Color.Magenta).forEach { color ->
+                    listOf(Yellow200, Red200, Blue200, Green200, Purple200).forEach { color ->
                         Box(
                             modifier = Modifier
                                 .size(50.dp)
                                 .background(color)
                                 .clickable { player1Color = color }
-                                .border(2.dp, if (player1Color == color) Color.White else Color.Black)
+                                .border(2.dp, if (player1Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
@@ -133,7 +134,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                         Button(
                             onClick = { player1Shape = shape },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (player1Shape == shape) Color.Gray else Color.LightGray
+                                containerColor = if (player1Shape == shape) Gray else LightGray
                             )
                         ) {
                             Text(shape.symbol)
@@ -143,7 +144,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
                 // Ustal losowy kolor i kształt dla komputera (inne niż gracza)
                 LaunchedEffect(player1Color, player1Shape) {
-                    val colors = listOf(Color.Yellow, Color.Red, Color.Blue, Color.Green, Color.Magenta) - player1Color
+                    val colors = listOf(Yellow200, Red200, Blue200, Green200, Purple200) - player1Color
                     val shapes = PlayerShape.values().toList() - player1Shape
                     player2Color = colors.random()
                     player2Shape = shapes.random()
@@ -151,13 +152,14 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             } else {
                 // Opcje dla trybu Double Mode
-                Text(text = "Player 1 - Choose Color and Shape", color = Color.White)
+                Text(text = "Player 1 - Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
+                // Wybór koloru i kształtu dla Player 1
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    listOf(Color.Yellow, Color.Red, Color.Blue, Color.Green, Color.Magenta).forEach { color ->
+                    listOf(Yellow200, Red200, Blue200, Green200, Purple200).forEach { color ->
                         Box(
                             modifier = Modifier
                                 .size(50.dp)
@@ -165,7 +167,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player2Color) player1Color = color
                                 }
-                                .border(2.dp, if (player1Color == color) Color.White else Color.Black)
+                                .border(2.dp, if (player1Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
@@ -182,7 +184,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 if (shape != player2Shape) player1Shape = shape
                             },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (player1Shape == shape) Color.Gray else Color.LightGray
+                                containerColor = if (player1Shape == shape) Gray else LightGray
                             )
                         ) {
                             Text(shape.symbol)
@@ -191,13 +193,13 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
-                Text(text = "Player 2 - Choose Color and Shape", color = Color.White)
+                Text(text = "Player 2 - Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    listOf(Color.Yellow, Color.Red, Color.Blue, Color.Green, Color.Magenta).forEach { color ->
+                    listOf(Yellow200, Red200, Blue200, Green200, Purple200).forEach { color ->
                         Box(
                             modifier = Modifier
                                 .size(50.dp)
@@ -205,7 +207,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player1Color) player2Color = color
                                 }
-                                .border(2.dp, if (player2Color == color) Color.White else Color.Black)
+                                .border(2.dp, if (player2Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
@@ -222,7 +224,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 if (shape != player1Shape) player2Shape = shape
                             },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (player2Shape == shape) Color.Gray else Color.LightGray
+                                containerColor = if (player2Shape == shape) Gray else LightGray
                             )
                         ) {
                             Text(shape.symbol)

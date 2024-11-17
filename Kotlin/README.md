@@ -1,7 +1,7 @@
 # TicTacToe
 
-Prosta aplikacja mobilna do gry w kółko i krzyżyk z obsługą trybów jednoosobowego i dwuosobowego.
-Aplikacja stworzona w Flutterze.
+Prosta aplikacja mobilna do gry w kółko i krzyżyk z obsługą trybów jednoosobowego i dwuosobowego. 
+Aplikacja stworzona w Kotlinie z wykorzystaniem Jetpack Compose.
 
 ---
 
@@ -13,22 +13,22 @@ Aplikacja stworzona w Flutterze.
 ---
 
 ## Struktura projektu
-1. **main.dart**
-   Główny plik aplikacji, który uruchamia cały projekt i wyświetla ekran startowy.
+1. **MainActivity.kt**
+   Zarządzanie ekranami aplikacji.
 
-2. **StartScreen.dart**
+2. **StartScreen.kt**
    Ekran konfiguracji gry (wybór trybu, rozmiaru planszy, kolorów i kształtów graczy).
 
-3. **GameScreen.dart**  
+3. **GameScreen.kt**  
    Ekran rozgrywki. Obsługa logiki gry, zmiana gracza oraz sprawdzanie wygranej.
 
-4. **ResultScreen.dart**  
+4. **ResultScreen.kt**  
    Ekran wyników z opcją powrotu do ustawień lub rozpoczęcia nowej gry.
 
 5. **Folder ui.theme**
-    - **colors.dart** – Definicje kolorów.
-    - **theme.dart** – Ustawienia motywu aplikacji.
-    - **typography.dart** – Definicje stylów tekstu.
+    - **Color.kt** – Definicje kolorów.
+    - **Theme.kt** – Ustawienia motywu aplikacji.
+    - **Type.kt** – Definicje stylów tekstu.
 
 ---
 
@@ -42,19 +42,19 @@ Aplikacja stworzona w Flutterze.
 
 ---
 
-## Przykładowe zrzuty ekranu
+## Przykładowe zrzuty ekranu 
 - Ekran konfiguracji gry
-  ![img.png](img.png)
-  ![img_1.png](img_1.png)
+![img.png](img.png)
+![img_1.png](img_1.png)
 
 - Rozgrywka w toku  
-  ![img_4.png](img_4.png)
-  ![img_2.png](img_2.png)
-  ![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
 
 - Ekran wyników
-  ![img_5.png](img_5.png)
-  ![img_6.png](img_6.png)
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
 
 ---
 

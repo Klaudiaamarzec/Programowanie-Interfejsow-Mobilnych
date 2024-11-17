@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'GameSettings.dart';
+import 'StartScreen.dart';
 import 'ResultScreen.dart';
+import 'ui/theme/colors.dart';
+import 'ui/theme/typography.dart';
 
 enum Player { X, O, NONE }
 
@@ -141,55 +143,75 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text('Tic Tac Toe', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
-      ),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int i = 0; i < widget.gameSettings.boardSize; i++)
-                Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int j = 0; j < widget.gameSettings.boardSize; j++)
-                      GestureDetector(
-                        onTap: () => onCellClick(i, j),
-                        child: Container(
-                          width: 80,
-                          height: 80,
-                          margin: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            border: Border.all(color: Colors.yellow),
-                          ),
-                          child: Center(
-                            child: Text(
-                              board[i][j] == Player.X
-                                  ? player1Shape
-                                  : board[i][j] == Player.O
-                                  ? player2Shape
-                                  : '',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: board[i][j] == Player.X
-                                    ? player1Color
-                                    : board[i][j] == Player.O
-                                    ? player2Color
-                                    : Colors.transparent,
+                    for (int i = 0; i < widget.gameSettings.boardSize; i++)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int j = 0; j < widget.gameSettings.boardSize; j++)
+                            GestureDetector(
+                              onTap: () => onCellClick(i, j),
+                              child: Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.background,
+                                  border: Border.all(color: AppColors.borderColor),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    board[i][j] == Player.X
+                                        ? player1Shape
+                                        : board[i][j] == Player.O
+                                        ? player2Shape
+                                        : '',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      color: board[i][j] == Player.X
+                                          ? player1Color
+                                          : board[i][j] == Player.O
+                                          ? player2Color
+                                          : Colors.transparent,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                        ],
                       ),
                   ],
                 ),
-            ],
-          ),
+              ),
+            ),
+
+            // Dodanie przycisku na dole
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  minimumSize: Size(150, 50),
+                ),
+                child: Text(
+                  "Back to settings",
+                    style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

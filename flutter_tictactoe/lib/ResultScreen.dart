@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ui/theme/typography.dart';
 
 class ResultScreen extends StatelessWidget {
   final String resultMessage;
@@ -14,7 +15,7 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -24,43 +25,33 @@ class ResultScreen extends StatelessWidget {
             children: [
               Text(
                 resultMessage,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTypography.headlineLarge.copyWith(color: Theme.of(context).colorScheme.onBackground),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 32),
               ElevatedButton(
                 onPressed: onPlayAgain,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   minimumSize: Size(150, 50),
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                 ),
                 child: Text(
                   "Play again",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary)
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 32),
               ElevatedButton(
                 onPressed: onBackToSettings,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   minimumSize: Size(150, 50),
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                 ),
                 child: Text(
                   "Back to settings",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                    style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary)
                 ),
               ),
             ],
