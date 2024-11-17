@@ -270,7 +270,7 @@ class _StartScreenState extends State<StartScreen> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(100, 50),
                   backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  foregroundColor: Colors.black,
                 ),
                 child: Text("PLAY"),
               ),

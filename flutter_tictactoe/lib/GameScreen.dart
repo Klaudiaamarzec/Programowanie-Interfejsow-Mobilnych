@@ -207,7 +207,7 @@ class _GameScreenState extends State<GameScreen> {
                 ),
                 child: Text(
                   "Back to settings",
-                    style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                    style: AppTypography.bodyMedium.copyWith(color: Colors.black),
                 ),
               ),
             ),

@@ -6,7 +6,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.light(
       primary: AppColors.yellow200,
-      onPrimary: AppColors.textColorLightMode,
+      onPrimary: AppColors.textColor,
       background: AppColors.backgroundColorLightMode,
       onBackground: AppColors.textColorLightMode,
     ),

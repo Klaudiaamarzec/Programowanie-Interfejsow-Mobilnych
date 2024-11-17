@@ -12,9 +12,10 @@ class AppColors {
 
   static const Color textColorDarkMode = Color(0xFFFFFFFF);
   static const Color textColorLightMode = Color(0xFF000000);
+  static const Color textColor = Color(0xFFFFFFFF);
 
   static const Color borderColor = Color(0xFFFFEB46);
 
-  static const Color gray = Color(0xFF454545);
-  static const Color lightGray = Color(0xFF999999);
+  static const Color gray = Color(0xFFCCCCCC);
+  static const Color lightGray = Color(0xFF777777);
 }

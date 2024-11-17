@@ -38,7 +38,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Play again",
-                  style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary)
+                  style: AppTypography.bodyMedium.copyWith(color: Colors.black)
                 ),
               ),
               SizedBox(height: 32),
@@ -51,7 +51,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Back to settings",
-                    style: AppTypography.bodyMedium.copyWith(color: Theme.of(context).colorScheme.onPrimary)
+                    style: AppTypography.bodyMedium.copyWith(color: Colors.black)
                 ),
               ),
             ],
