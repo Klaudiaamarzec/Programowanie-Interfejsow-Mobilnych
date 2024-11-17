@@ -1,16 +1,26 @@
-# React Native configuration using Expo
+# React Native configuration using Expo CLI
 
-# Expo CLI installation
-```bash
+``` bash
+npm install -g expo-cli
+```
+
+OR
+``` bash
 npm install --save-dev expo
-
-npx create-expo-app --template
 ```
 
-- Option Navigation
-- project name: tictactoe
-
-# Run android
-```bash
-npm run android
+# Create a new project
+``` bash
+npx create-expo-app tictactoe --template blank
 ```
+
+# Install needed modules
+
+``` bash
+expo install @react-navigation/native @react-navigation/native-stack
+
+npm install @react-navigation/native react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-vector-icons
+
+expo install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-vector-icons
+```
+
