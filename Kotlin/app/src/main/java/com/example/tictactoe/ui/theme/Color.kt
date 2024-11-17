@@ -8,12 +8,13 @@ val Red200 = Color(0xFFEF5350)
 val Green200 = Color(0xFF66BB6A)
 val Purple200 = Color(0xFFBA68C8)
 
-val BackgroundColor = Color(0xFF000000)
-val TextColor = Color(0xFFFFFFFF)
+val BackgroundColorDarkMode = Color(0xFF000000)
+val BackgroundColorLightMode = Color(0xFFFFFFFF)
+
+val TextColorDarkMode = Color(0xFFFFFFFF)
+val TextColorLightMode = Color(0xFF000000)
 
 val BorderColor = Color(0xFFFFEB46)
-val BorderColor2 = Color(0xFFFFFFFF)
-val BorderColor3 = Color(0xFF000000)
 
 val Gray =  Color(0xFF454545)
 val LightGray =  Color(0xFF999999)

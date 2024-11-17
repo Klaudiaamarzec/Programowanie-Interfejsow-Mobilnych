@@ -6,16 +6,16 @@ import androidx.compose.material3.*
 
 private val LightColors = lightColorScheme(
     primary = Yellow200,
-    onPrimary = BackgroundColor,
-    background = BackgroundColor,
-    onBackground = TextColor
+    onPrimary = TextColorLightMode,
+    background = BackgroundColorLightMode,
+    onBackground = TextColorLightMode
 )
 
 private val DarkColors = darkColorScheme(
     primary = Yellow200,
-    onPrimary = BackgroundColor,
-    background = BackgroundColor,
-    onBackground = TextColor
+    onPrimary = TextColorLightMode,
+    background = BackgroundColorDarkMode,
+    onBackground = TextColorDarkMode
 )
 
 @Composable

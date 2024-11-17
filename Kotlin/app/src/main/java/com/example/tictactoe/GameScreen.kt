@@ -97,7 +97,7 @@ fun GameScreen(onBack: () -> Unit, onGameEnd: (String) -> Unit, gameSettings: Ga
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(BackgroundColor),
+            .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

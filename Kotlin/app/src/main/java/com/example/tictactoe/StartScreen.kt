@@ -33,7 +33,7 @@ enum class PlayerShape(val symbol: String) {
 @Composable
 fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
-    Box(modifier = Modifier.fillMaxSize().background(BackgroundColor)) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -45,7 +45,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
             Text(
                 text = "Select game mode and settings",
                 style = MaterialTheme.typography.headlineLarge,
-                color = TextColor,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 32.dp)
             )
 
@@ -84,7 +84,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
             Spacer(modifier = Modifier.height(32.dp))
 
             // Wybór rozmiaru planszy
-            Text(text = "Choose Board Size", color = TextColor)
+            Text(text = "Choose Board Size", color = MaterialTheme.colorScheme.onBackground)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
@@ -105,7 +105,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             if (selectedMode == GameMode.SINGLE_MODE) {
                 // Opcje dla trybu Single Mode
-                Text(text = "Choose Color and Shape", color = TextColor)
+                Text(text = "Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
                 // Wybór koloru dla gracza
                 Row(
@@ -118,7 +118,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .size(50.dp)
                                 .background(color)
                                 .clickable { player1Color = color }
-                                .border(2.dp, if (player1Color == color) BorderColor2 else BorderColor3)
+                                .border(2.dp, if (player1Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
@@ -152,7 +152,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
 
             } else {
                 // Opcje dla trybu Double Mode
-                Text(text = "Player 1 - Choose Color and Shape", color = TextColor)
+                Text(text = "Player 1 - Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
                 // Wybór koloru i kształtu dla Player 1
                 Row(
@@ -167,7 +167,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player2Color) player1Color = color
                                 }
-                                .border(2.dp, if (player1Color == color) BorderColor2 else BorderColor3)
+                                .border(2.dp, if (player1Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
@@ -193,7 +193,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
-                Text(text = "Player 2 - Choose Color and Shape", color = TextColor)
+                Text(text = "Player 2 - Choose Color and Shape", color = MaterialTheme.colorScheme.onBackground)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -207,7 +207,7 @@ fun StartScreen(onStartGame: (GameSettings) -> Unit) {
                                 .clickable {
                                     if (color != player1Color) player2Color = color
                                 }
-                                .border(2.dp, if (player2Color == color) BorderColor2 else BorderColor3)
+                                .border(2.dp, if (player2Color == color) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background)
                         )
                     }
                 }
