@@ -3,13 +3,7 @@ import Colors from "./Color";
 import { useTheme } from './Theme';
 
 const Styles = () => {
-
-    //const { background, text } = useTheme();
     const { backgroundColor, text, textColor } = useTheme();
-
-    //const backgroundColor = scheme === 'dark' ? Colors.BackgroundColorDarkMode : Colors.BackgroundColorLightMode;
-    //const text = scheme === 'dark' ? Colors.TextColorButton : Colors.TextColor;
-    //const textColor = scheme === 'dark' ? Colors.TextColor : Colors.TextColorButton;
 
     return StyleSheet.create({
         container: {
@@ -48,13 +42,13 @@ const Styles = () => {
             color: textColor,
         },
         subtitle: {
-            fontSize: 15,
+            fontSize: 15.5,
             marginBottom: 9,
             marginTop: 25,
             color: textColor,
         },
         subtitleSingle: {
-            fontSize: 15,
+            fontSize: 15.5,
             marginBottom: 0,
             marginTop: 25,
             color: textColor,

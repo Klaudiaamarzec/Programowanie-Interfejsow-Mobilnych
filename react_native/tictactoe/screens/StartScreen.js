@@ -51,8 +51,28 @@ const StartScreen = ({ navigation }) => {
       </TouchableOpacity>
   );
 
-  return (
-      <View style={styles.container}>
+    const containerStyle = {
+        ...styles.container,
+        paddingTop: selectedMode === 'SINGLE_MODE' ? 120 : 40,
+    };
+
+    const subtitleStyle = {
+        ...styles.subtitle,
+        marginTop: selectedMode === 'SINGLE_MODE' ? 25: 28,
+    };
+
+    const rowStyle = {
+        ...styles.row,
+        marginBottom: selectedMode === 'SINGLE_MODE' ? 11: 10,
+    };
+
+    const playButtonStyle = {
+        ...styles.playButton,
+        marginTop: selectedMode === 'SINGLE_MODE' ? 62: 45,
+    };
+
+    return (
+      <View style={containerStyle}>
         <Text style={styles.title}>Select game mode and settings</Text>
 
         {/* Game Mode */}
@@ -62,7 +82,7 @@ const StartScreen = ({ navigation }) => {
         </View>
 
         {/* Board Size */}
-        <Text style={styles.subtitle}>Choose Board Size</Text>
+        <Text style={subtitleStyle}>Choose Board Size</Text>
         <View style={styles.row}>
           {[3, 4, 5].map(size => (
               <TouchableOpacity key={size} onPress={() => setSelectedBoardSize(size)}>
@@ -96,7 +116,7 @@ const StartScreen = ({ navigation }) => {
         ) : (
             <>
               {/* Double Mode Player 1 Settings */}
-              <Text style={styles.subtitle}>Player 1 - Choose Color and Shape</Text>
+              <Text style={styles.subtitleSingle}>Player 1 - Choose Color and Shape</Text>
               <View style={styles.row}>
                 {[Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer1Color(color)}>
@@ -105,7 +125,7 @@ const StartScreen = ({ navigation }) => {
                 ))}
               </View>
 
-              <View style={styles.row}>
+              <View style={rowStyle}>
                 {['X', 'O', '■', '▲', '★'].map(shape => (
                     <TouchableOpacity key={shape} onPress={() => setPlayer1Shape(shape)}>
                       {renderShapeOption(shape, () => setPlayer1Shape(shape), player1Shape === shape)}
@@ -114,7 +134,7 @@ const StartScreen = ({ navigation }) => {
               </View>
 
               {/* Double Mode Player 2 Settings */}
-              <Text style={styles.subtitle}>Player 2 - Choose Color and Shape</Text>
+              <Text style={styles.subtitleSingle}>Player 2 - Choose Color and Shape</Text>
               <View style={styles.row}>
                 {[Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer2Color(color)}>
@@ -135,7 +155,7 @@ const StartScreen = ({ navigation }) => {
 
         {/* Play Button */}
         <TouchableOpacity
-            style={styles.playButton}
+            style={playButtonStyle}
             onPress={() => {
               navigation.navigate('Game', {
                 gameSettings: {
