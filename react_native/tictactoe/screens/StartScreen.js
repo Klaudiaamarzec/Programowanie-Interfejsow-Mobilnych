@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Surface } from 'react-native-paper';
+import Colors from "../ui.theme/Color";
+import Styles from "../ui.theme/Styles";
 
 const StartScreen = ({ navigation }) => {
   const [selectedMode, setSelectedMode] = useState('SINGLE_MODE');
   const [selectedBoardSize, setSelectedBoardSize] = useState(3);
-  const [player1Color, setPlayer1Color] = useState('#FFEB3B'); // Yellow
-  const [player2Color, setPlayer2Color] = useState('#2196F3'); // Blue
+  const [player1Color, setPlayer1Color] = useState(Colors.Yellow200);
+  const [player2Color, setPlayer2Color] = useState(Colors.Blue200);
   const [player1Shape, setPlayer1Shape] = useState('X');
   const [player2Shape, setPlayer2Shape] = useState('O');
+
+  const styles = Styles();
 
   // Randomize player2's color and shape in Single Mode
   useEffect(() => {
     if (selectedMode === 'SINGLE_MODE') {
-      const availableColors = ['#FFEB3B', '#F44336', '#2196F3', '#4CAF50', '#9C27B0'];
+      const availableColors = [Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200];
       const availableShapes = ['X', 'O', '■', '▲', '★'];
 
       const randomColor = availableColors.filter(color => color !== player1Color)[Math.floor(Math.random() * availableColors.length)];
@@ -34,7 +38,7 @@ const StartScreen = ({ navigation }) => {
       <TouchableOpacity
           onPress={onPress}
           style={[
-            styles.colorOption,
+              styles.colorOption,
             { backgroundColor: color },
             isSelected && styles.selectedColorOption
           ]}
@@ -74,7 +78,7 @@ const StartScreen = ({ navigation }) => {
             <>
               <Text style={styles.subtitleSingle}>Choose Color and Shape</Text>
               <View style={styles.row}>
-                {['#FFEB3B', '#F44336', '#2196F3', '#4CAF50', '#9C27B0'].map(color => (
+                {[Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer1Color(color)}>
                       {renderColorOption(color, () => setPlayer1Color(color), player1Color === color)}
                     </TouchableOpacity>
@@ -94,7 +98,7 @@ const StartScreen = ({ navigation }) => {
               {/* Double Mode Player 1 Settings */}
               <Text style={styles.subtitle}>Player 1 - Choose Color and Shape</Text>
               <View style={styles.row}>
-                {['#FFEB3B', '#F44336', '#2196F3', '#4CAF50', '#9C27B0'].map(color => (
+                {[Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer1Color(color)}>
                       {renderColorOption(color, () => setPlayer1Color(color), player1Color === color)}
                     </TouchableOpacity>
@@ -112,7 +116,7 @@ const StartScreen = ({ navigation }) => {
               {/* Double Mode Player 2 Settings */}
               <Text style={styles.subtitle}>Player 2 - Choose Color and Shape</Text>
               <View style={styles.row}>
-                {['#FFEB3B', '#F44336', '#2196F3', '#4CAF50', '#9C27B0'].map(color => (
+                {[Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200].map(color => (
                     <TouchableOpacity key={color} onPress={() => setPlayer2Color(color)}>
                       {renderColorOption(color, () => setPlayer2Color(color), player2Color === color)}
                     </TouchableOpacity>
@@ -150,100 +154,5 @@ const StartScreen = ({ navigation }) => {
       </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingTop: 35,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 33,
-    alignSelf: 'flex-start',
-    paddingLeft: 20,
-    fontWeight: 'bold',
-    marginBottom: 32,
-  },
-  subtitle: {
-    fontSize: 15,
-    marginBottom: 9,
-    marginTop: 25,
-  },
-  subtitleSingle: {
-    fontSize: 15,
-    marginBottom: 0,
-    marginTop: 25,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    marginBottom: 11,
-  },
-  button: {
-    paddingHorizontal: 25,
-    borderRadius: 30,
-    width: 133,
-    height: 39,
-    backgroundColor: '#ccc',
-    marginHorizontal: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  selectedButton: {
-    backgroundColor: '#777',
-  },
-  buttonText: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  sizeButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 26,
-    marginLeft: 10,
-    height: 37,
-    borderRadius: 30,
-    backgroundColor: '#ccc',
-  },
-  sizeButtonText: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  colorOption: {
-    width: 45,
-    height: 45,
-    borderRadius: 0,
-    margin: 8,
-  },
-  selectedColorOption: {
-    borderWidth: 3,
-    borderColor: '#000',
-  },
-  shapeButton: {
-    paddingTop: 7,
-    paddingBottom: 10,
-    paddingHorizontal: 22,
-    width: 55,
-    backgroundColor: '#ccc',
-    borderRadius: 30,
-    marginTop: 3,
-    marginRight: 5,
-  },
-  playButton: {
-    backgroundColor: '#ffe83c',
-    width: '100',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    marginTop: 62,
-  },
-  playButtonText: {
-    color: '#000',
-    fontSize: 14,
-    fontWeight: 'normal',
-  },
-});
 
 export default StartScreen;

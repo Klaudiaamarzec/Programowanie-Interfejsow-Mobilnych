@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Styles from "../ui.theme/Styles";
 
 const GameScreen = ({ navigation, route }) => {
     const { gameSettings } = route.params;
+    const styles = Styles();
 
     const [currentPlayer, setCurrentPlayer] = useState('X');
     const [board, setBoard] = useState(
@@ -95,10 +97,10 @@ const GameScreen = ({ navigation, route }) => {
     }, [winner]);
 
     return (
-        <View style={styles.container}>
+        <View style={styles.gameContainer}>
             <View style={styles.board}>
                 {Array.from({ length: gameSettings.boardSize }).map((_, i) => (
-                    <View key={i} style={styles.row}>
+                    <View key={i} style={styles.boardRow}>
                         {Array.from({ length: gameSettings.boardSize }).map((_, j) => {
                             const { symbol, color } = getPlayerSymbolAndColor(board[i][j]);
                             return (
@@ -118,59 +120,14 @@ const GameScreen = ({ navigation, route }) => {
             </View>
 
             <TouchableOpacity
-                style={[styles.button]}
+                style={[styles.backButton]}
                 onPress={() => navigation.goBack()}
             >
-                <Text style={styles.buttonText}>Back to settings</Text>
+                <Text style={styles.playButtonText}>Back to settings</Text>
             </TouchableOpacity>
 
-            {/*<Button style={[styles.button]} title="Back to settings" onPress={() => navigation.goBack()} />*/}
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#ffffff',
-        marginTop: -135,
-    },
-    board: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    row: {
-        flexDirection: 'row',
-    },
-    cell: {
-        width: 80,
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
-        borderColor: '#ffe954',
-    },
-    cellText: {
-        fontSize: 25,
-        fontWeight: 'bold',
-    },
-    button: {
-        backgroundColor: '#ffe83c',
-        width: '150',
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 30,
-        marginBottom: 35,
-    },
-    buttonText: {
-        color: '#000',
-        fontSize: 14,
-        fontWeight: 'normal',
-    },
-});
 
 export default GameScreen;
