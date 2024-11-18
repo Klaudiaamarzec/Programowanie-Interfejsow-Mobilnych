@@ -39,8 +39,6 @@ const GameScreen = ({ navigation, route }) => {
     useEffect(() => {
         if (gameSettings.mode === 'SINGLE_MODE' && currentPlayer === 'O' && winner === null) {
             makeComputerMove();
-            const newWinner = checkWinner();
-            setWinner(newWinner);
         }
     }, [currentPlayer]);
 
@@ -76,15 +74,17 @@ const GameScreen = ({ navigation, route }) => {
                 const newBoard = [...board];
                 newBoard[i][j] = 'O';
                 setBoard(newBoard);
-                setCurrentPlayer('X');
+                const newWinner = checkWinner();
+                setWinner(newWinner);
+                if (newWinner === null) {
+                    setCurrentPlayer('X');
+                }
             }, 200);
         }
     };
 
     const onCellClick = (i, j) => {
         if (board[i][j] === 'NONE' && winner === null) {
-            // board[i][j] = currentPlayer;
-            // setBoard([...board]);
             const newBoard = [...board];
             newBoard[i][j] = currentPlayer;
             setBoard(newBoard);
