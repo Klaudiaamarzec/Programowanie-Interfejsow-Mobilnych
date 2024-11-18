@@ -14,8 +14,8 @@ const GameScreen = ({ navigation, route }) => {
 
     const player1Color = gameSettings.player1Color;
     const player2Color = gameSettings.player2Color;
-    const player1Shape = gameSettings.player1Shape?.symbol || 'X';
-    const player2Shape = gameSettings.player2Shape?.symbol || 'O';
+    const player1Shape = gameSettings.player1Shape || 'X';
+    const player2Shape = gameSettings.player2Shape || 'O';
 
     const getPlayerSymbolAndColor = (player) => {
         switch (player) {
@@ -35,6 +35,14 @@ const GameScreen = ({ navigation, route }) => {
             );
         }
     }, []);
+
+    useEffect(() => {
+        if (gameSettings.mode === 'SINGLE_MODE' && currentPlayer === 'O' && winner === null) {
+            makeComputerMove();
+            const newWinner = checkWinner();
+            setWinner(newWinner);
+        }
+    }, [currentPlayer]);
 
     const checkWinner = () => {
         for (let i = 0; i < gameSettings.boardSize; i++) {
@@ -63,26 +71,27 @@ const GameScreen = ({ navigation, route }) => {
             }
         }
         if (emptyCells.length) {
-            const [i, j] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            board[i][j] = 'O';
-            //setBoard([...board]);
-            setCurrentPlayer('X');
+            setTimeout(() => {
+                const [i, j] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                const newBoard = [...board];
+                newBoard[i][j] = 'O';
+                setBoard(newBoard);
+                setCurrentPlayer('X');
+            }, 200);
         }
     };
 
     const onCellClick = (i, j) => {
         if (board[i][j] === 'NONE' && winner === null) {
-            board[i][j] = currentPlayer;
-            //setBoard([...board]);
+            // board[i][j] = currentPlayer;
+            // setBoard([...board]);
+            const newBoard = [...board];
+            newBoard[i][j] = currentPlayer;
+            setBoard(newBoard);
             const currentWinner = checkWinner();
             setWinner(currentWinner);
             if (currentWinner === null) {
                 setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
-                if (gameSettings.mode === 'SINGLE_MODE' && currentPlayer === 'O') {
-                    makeComputerMove();
-                    const newWinner = checkWinner();
-                    setWinner(newWinner);
-                }
             }
         }
     };

@@ -20,8 +20,8 @@ const StartScreen = ({ navigation }) => {
       const availableColors = [Colors.Yellow200, Colors.Red200, Colors.Blue200, Colors.Green200, Colors.Purple200];
       const availableShapes = ['X', 'O', '■', '▲', '★'];
 
-      const randomColor = availableColors.filter(color => color !== player1Color)[Math.floor(Math.random() * availableColors.length)];
-      const randomShape = availableShapes.filter(shape => shape !== player1Shape)[Math.floor(Math.random() * availableShapes.length)];
+        const randomColor = availableColors.filter(color => color !== player1Color)[Math.floor(Math.random() * availableColors.length)];
+        const randomShape = availableShapes.filter(shape => shape !== player1Shape)[Math.floor(Math.random() * availableShapes.length)];
 
       setPlayer2Color(randomColor);
       setPlayer2Shape(randomShape);
